@@ -1,7 +1,4 @@
 # MusicLibrary
-# Solo Project Proposal 
-# Joshua Wallowitch
-
 # Sheet Music Library
 
 # Project Description:
