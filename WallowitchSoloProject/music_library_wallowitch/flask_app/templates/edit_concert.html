@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Edit Concert</title>
+</head>
+<body>
+    <header>
+        <nav class="text-center card bg-secondary text-white">
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    </br> 
+    <main>
+        <div class="container">
+            <h1 class="text-center">Edit Concert</h1>
+            </br>
+            <div class="card col-5 mx-auto bg-dark text-white">
+                <form action="/concerts/update" method="POST">
+                    <div>
+                        <div>
+                            {% with messages = get_flashed_messages(category_filter=['create']) %}
+                                {% if messages %}
+                                <alert class="card bg-danger">
+                                        {% for message in messages %}
+                                        <p>{{message}}</p>
+                                        {% endfor %}
+                                </alert>
+                                {% endif %}
+                            {% endwith %}
+                            <div>
+                                <label for="ensemble">Name of Ensemble:</label>
+                                <input type="text" name="ensemble" id="ensemble" value="{{concert.ensemble}}" class="form-control">
+                            </div>
+                            <div>
+                                <label for="date">Date:</label>
+                                <input type="date" name="date" id="date" value="{{concert.date}}" class="form-control">
+                            </div>
+                            <div>
+                                <label for="song_one">Song One:</label>
+                                <select name="song_one" id="song_one" value="{{concert.song_one}}" class="form-control">
+                                    <option>{{concert.song_one}}</option>
+                                    {% for song in songs %}
+                                        {% if song.user_id == session.user_id %}
+                                        <option>{{song.name}}</option>                   
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div>
+                                <label for="song_two">Song Two:</label>
+                                <select name="song_two" id="song_two" value="{{concert.song_two}}" class="form-control">
+                                    <option>{{concert.song_two}}</option>
+                                    {% for song in songs %}
+                                        {% if song.user_id == session.user_id %}
+                                        <option>{{song.name}}</option>                   
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div>
+                                <label for="song_three">Song Three:</label>
+                                <select name="song_three" id="song_three" value="{{concert.song_three}}" class="form-control">
+                                    <option>{{concert.song_three}}</option>
+                                    {% for song in songs %}
+                                        {% if song.user_id == session.user_id %}
+                                        <option value="">{{song.name}}</option>                   
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div>
+                                <label for="song_four">Song Four:</label>
+                                <select name="song_four" id="song_four" value="{{concert.song_four}}" class="form-control">
+                                    <option>{{concert.song_four}}</option>
+                                    {% for song in songs %}
+                                        {% if song.user_id == session.user_id %}
+                                        <option>{{song.name}}</option>                   
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div>
+                                <label for="description">Description:</label>
+                                <input name="description" id="description" cols="30" rows="4" value="{{concert.description}}" class="form-control">
+                            </div>
+                            <input type="hidden" name="id" value="{{concert.id}}">
+                            <br>
+                            <div class="d-flex justify-content-around">
+                                <a href="/concerts" class="btn btn-danger">Cancel</a>
+                                <button class="btn btn-success">Update</button>
+                            </div>
+                            </br>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

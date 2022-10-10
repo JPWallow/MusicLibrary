@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Concert Details</title>
+</head>
+<body>
+    <header>
+        <nav class="text-center card bg-secondary text-white">
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </br>
+    </header>
+    <div class="container">
+        <h1 class="text-center">Concert On {{concert.date}}</h1>
+    </br>
+        <div>
+            <div class="card col-5 mx-auto bg-dark text-white">
+                <div class="card-body">
+                    <div>
+                        <p>Performed by {{concert.ensemble}}</p>
+                        <p>Song One: {{concert.song_one}}</p>
+                        <p>Song Two: {{concert.song_two}}</p>
+                        <p>Song Three Type: {{concert.song_three}}</p>
+                        <p>Song Four: {{concert.song_four}}</p>
+                        <p>Description:</p>
+                        <p>{{concert.description}}</p>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <a href="/concerts" class="btn btn-primary"> Back </a>
+                        <a href="/concerts/edit/{{concert.id}}" class="btn btn-warning"> Edit </a>
+                        <a href="/concerts/delete/{{concert.id}}" class="btn btn-danger"> Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
