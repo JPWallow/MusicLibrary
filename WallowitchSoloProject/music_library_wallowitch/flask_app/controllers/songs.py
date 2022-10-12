@@ -73,7 +73,7 @@ def update():
     print("song_data", song_data)
     if not Song.validate_song(request.form):
         id = request.form['id']
-        return redirect("/songs/edit/{id}")
+        return redirect(f"/songs/edit/{id}")
     Song.update(song_data)
     return redirect("/dashboard") 
 
