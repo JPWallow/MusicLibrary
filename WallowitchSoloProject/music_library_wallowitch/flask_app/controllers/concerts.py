@@ -95,7 +95,7 @@ def update_concert():
         }
     if not Concert.validate_concert(request.form):
         id = request.form['id']
-        return redirect("/concerts/edit/{id}")
+        return redirect(f"/concerts/edit/{id}")
     Concert.update_concert(concert_data)
     return redirect("/concerts") 
 
